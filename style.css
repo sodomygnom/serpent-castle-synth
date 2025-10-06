@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f2cba0;
+}
+
+#app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  filter: blur(0.5px);
+}
+
+navigator {
+  margin: auto;
+  color: #003754;
+  width: calc(max(72vw, 72vh) - 3rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  padding-bottom: 2rem;
+  padding-top: 1.5rem;
+}
+
+input[type="range"] {
+  vertical-align: middle;
+  width: 9rem;
+}
+
+@supports (-moz-appearance: none) {
+  input[type="range"] {
+    filter: invert(0);
+  }
+  audio {
+    background: #90b4b0;
+  }
+}
+
+fieldset {
+  background: #f2cba0f1;
+}
+
+.grid-span {
+  grid-column: span 2;
+}
+
+.grid-span-4 {
+  grid-column: span 4;
+}
+
+h2 {
+  margin: 0;
+  font-family: "UnifrakturCook", cursive;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2.1rem;
+  line-height: 0;
+}
+
+audio {
+  width: -moz-available;
+  width: -webkit-fill-available;
+  color-scheme: dark;
+}
+
+label,
+button,
+input,
+select {
+  font-size: 1.3rem;
+  font-family: "UnifrakturMaguntia", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+p {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+  font-family: "UnifrakturMaguntia", cursive;
+  font-weight: 400;
+  font-style: normal;
+  /* -webkit-text-stroke: indianred;
+  -webkit-text-stroke-width: thin; */
+}
+
+.keyboard {
+  margin: auto;
+  width: max(70vw, 70vh);
+}
+
+.keys-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.noteName,
+.keyName {
+  pointer-events: none;
+  font-family: "UnifrakturMaguntia", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.noteName {
+  -webkit-text-stroke-color: #003754;
+  -webkit-text-stroke-width: .9px;
+}
+
+.keyName {
+  font-size: 1.22rem;
+  color: #003754;
+}
+
+.pressed {
+  /* filter: invert(0.8); */
+  background: #886a6a !important;
+}
+
+select,
+button,
+input {
+  filter: invert(1);
+}
+
+.highlight {
+  background: #90b4b0;
+  padding: 0 5px 0 5px;
+  border-radius: 3px;
+  border: 1px solid #003754;
+  line-height: 0;
+  font-family: monospace !important;
+  font-size: 1rem;
+}
+
+.key {
+  font-size: 1.66rem;
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  margin: 4px;
+  width: 4rem;
+  height: 4rem;
+  display: block;
+  background: #9f9f9f;
+  color: aliceblue;
+  border: 3px solid #003754;
+  overflow: hidden;
+  filter: invert(1);
+}
+
+canvas {
+  position: fixed;
+  z-index: -1;
+}

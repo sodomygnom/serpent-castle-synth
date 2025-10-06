@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Online visual synthesizer. Play, record, and generate stunning audio-reactive visualizations, saving both sound and visuals to a .webm file. Explore different scales, synth sounds, and effects.">
+  <meta name="keywords"
+    content="visual synthesizer, online synth, arpeggiator, sequencer, loop recorder, visual keyboard, pitch wheel, music visualization, webm recorder, digital instrument, VJ tool, music creation, generative art, sound visualization, interactive music">
+  <title>𝕾𝖊𝖗𝖕𝖊𝖓𝖙 𝕮𝖆𝖘𝖙𝖑𝖊 𝕾𝖞𝖓𝖙𝖍</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <navigator>
+      <fieldset>
+        <legend>
+          <h2>Arp/Seq</h2>
+        </legend>
+        <p>
+          <label for="arpseqTempo">Tempo:</label>
+          <input type="range" id="arpseqTempo" min="0.025" max="240" step="0.025" value="120" list="arpseqTempo-list">
+          <datalist id="arpseqTempo-list">
+            <option value="120" label="120">
+          </datalist>
+          <br>
+          <button id="holdBtnArpseq">Hold</button>
+          <button id="playBtnArpseq">Play</button>
+          <br>
+          <input type="radio" id="arpseqArpegiator" name="arpseq" value="arpegiator" checked />
+          <label for="arpseqArpegiator">arpegiator</label>
+          <input type="radio" id="arpseqSequencer" name="arpseq" value="sequencer" />
+          <label for="arpseqSequencer">sequencer</label>
+          <br>
+          <label for="arpseqOctaves">Octaves:</label>
+          <input type="range" id="arpseqOctaves" min="-3" max="3" step="1" value="0" list="arpseqOctaves-list">
+          <datalist id="arpseqOctaves-list">
+            <option value="-3" label="-3">
+            <option value="-2" label="-2">
+            <option value="-1" label="-1">
+            <option value="0" label="0">
+            <option value="1" label="1">
+            <option value="2" label="2">
+            <option value="3" label="3">
+          </datalist>
+          <br>
+          Press <span class='highlight'>Space <sup>␣</sup></span> to record keys.
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <h2>Recorder</h2>
+        </legend>
+        <p>
+          <button id="record-button">Record</button>
+          <button id="stop-button" disabled>Stop</button>
+          <input type="checkbox" id="audio-only" name="audio-only" />
+          <label for="audio-only">audio only</label>
+          <br><br>
+          <button id="randomGenerator">generate random</button>
+          <br>
+          <br>
+          <button id="share">share config and arp/seq</button>
+        </p>
+      </fieldset>
+      <fieldset id="scale">
+        <legend>
+          <h2>Scale</h2>
+        </legend>
+        <p>
+          <label for="key">key:</label>
+          <select id="key">
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="D">D</option>
+            <option value="D#">D#</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+            <option value="A">A</option>
+            <option value="A#" selected>A#</option>
+            <option value="B">B</option>
+          </select>
+          <label for="mode"></label>
+          <select name="scale" id="mode">
+            <option value="major" selected>major</option>
+            <option value="minor">minor</option>
+            <option value="majorPentatonic">major pentatonic</option>
+            <option value="minorPentatonic">minor pentatonic</option>
+            <option value="harmonicMajor">harmonic major</option>
+            <option value="harmonicMinor">harmonic minor</option>
+            <option value="melodicMinor">melodic minor</option>
+            <option value="dorian">dorian</option>
+            <option value="phrygian">phrygian</option>
+            <option value="lydian">lydian</option>
+            <option value="mixolydian">mixolydian</option>
+            <option value="locrian">locrian</option>
+            <option value="blues">blues</option>
+            <option value="ionian+q4">ionian+q4</option>
+            <option value="dorian-q2">dorian-q2</option>
+            <option value="edo31-major">edo31-major</option>
+            <option value="edo31-minor">edo31-minor</option>
+            <option value="edo31-free">edo31-free</option>
+            <option value="12-tone-communism">12-tone-communism</option>
+            <option value="hirajoshi">hirajoshi</option>
+            <option value="iwato">iwato</option>
+            <option value="kumoi">kumoi</option>
+            <option value="aketa">aketa</option>
+            <option value="kokinjoshi">kokinjoshi</option>
+            <option value="insen">insen</option>
+            <option value="persian">persian</option>
+            <option value="gypsyMajor">gypsy major</option>
+            <option value="tritone">tritone</option>
+            <option value="enigmatic">enigmatic</option>
+            <option value="mystic">mystic</option>
+            <option value="pelog">pelog</option>
+            <option value="flamenco">flamenco</option>
+            <option value="oxtascale">oxtascale</option>
+            <option value="9-scale">9-scale</option>
+            <option value="10-scale">10-scale</option>
+            <option value="scriabin">scriabin</option>
+            <option value="vietnamese1">vietnamese 1</option>
+            <option value="vietnamese2">vietnamese 2</option>
+            <option value="chinese">chinese</option>
+            <option value="mongolian">mongolian</option>
+            <option value="balinese">balinese</option>
+            <option value="egyptian">egyptian</option>
+            <option value="hijaz">hijaz</option>
+            <option value="nahawand">nahawand</option>
+            <option value="rast">rast</option>
+            <option value="bayati">bayati</option>
+            <option value="saba">saba</option>
+            <option value="ajam">ajam</option>
+          </select>
+          <br>
+          <label for="octave">octave offset:</label>
+          <input id="octave" type="number" value="4" size="1" min="0" max="7">
+          <br>
+          <label for="pitch">standard pitch:</label>
+          <input id="pitch" type="number" value="440" size="3" min=1 max="4440">
+          <br>
+          <label for="prepared"> prepared:</label>
+          <input type="checkbox" id="prepared" />
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <h2>Synth</h2>
+        </legend>
+        <p>
+          <label for="synth">Synth:</label>
+          <select id="synth">
+            <option value="AMSynth">AMSynth</option>
+            <option value="Synth">Synth</option>
+            <option value="Synth.Marimba">Marimba</option>
+            <option value="Synth.Moog01">Moog01</option>
+            <option value="Synth.Moog02">Moog02</option>
+            <option value="Synth.Moog03">Moog03</option>
+            <option value="MonoSynth">MonoSynth</option>
+            <option value="MonoSynth.Ocarina">Ocarina</option>
+            <option value="MonoSynth.Pianoetta">Pianoetta</option>
+            <option value="MonoSynth.Barky">Barky</option>
+            <option value="MonoSynth.Bassy">Bassy</option>
+            <option value="MonoSynth.Drone">Drone</option>
+            <option value="DuoSynth" selected>DuoSynth</option>
+            <option value="DuoSynth.Steely">Steely</option>
+            <option value="DuoSynth.Unicorn">Unicorn</option>
+            <option value="DuoSynth.Organ">Organ</option>
+            <option value="FMSynth">FMSynth</option>
+            <option value="FMSynth.Trumpet">Trumpet</option>
+            <option value="FMSynth.Saxophone">Saxophone</option>
+            <option value="FMSynth.Koto">Koto</option>
+            <option value="FMSynth.ScratchAttack">ScratchAttack</option>
+            <option value="FMSynth.DistGit">DistGit</option>
+            <option value="MonoSynth.BrassCircuit">BrassCircuit</option>
+            <option value="MonoSynth.Pizz">Pizz</option>
+            <option value="MonoSynth.Kick">Kick</option>
+            <option value="MonoSynth.LaserSteps">LaserSteps</option>
+            <option value="MonoSynth.BassGuitar">BassGuitar</option>
+          </select>
+          <br>
+          <label for="volume">Volume:</label>
+          <input type="range" id="volume" data-effect="" min="-60" max="0" step="1" value="0">
+          <br>
+          <label for="volumeMix">Mix:</label>
+          <input type="range" id="volumeMix" data-effect="" min="0" max="1" step="0.01" value=".5" list="mix-levels">
+          <datalist id="mix-levels">
+            <option value=".5" label="50%/50%">
+          </datalist>
+          <br>
+          <label for="gain">Gain:</label>
+          <input type="range" id="gain" data-effect="" min="0" max="5" step="0.1" value="1" list="gain-levels">
+          <datalist id="gain-levels">
+            <option value="1" label="100%">
+          </datalist>
+        </p>
+      </fieldset>
+      <fieldset class='grid-span'>
+        <legend>
+          <h2>Tape-Looper</h2>
+        </legend>
+        <p>Press <span class='highlight'>-</span> to start loop. Press again to stop loop. Press again to loop
+          over and so on. To clear loop press <span class='highlight'>Backspace</span>. Play/Pause loop with
+          <span class='highlight'>=</span>.<br>
+          <br><audio controls loop id="tape"></audio>
+        </p>
+      </fieldset>
+
+      <fieldset id="effects">
+        <legend>
+          <h2>Effects</h2>
+        </legend>
+        <p>
+          <label for="reverb-amount">Reverb:</label>
+          <input type="range" id="decay" data-effect="" min="0.1" max="30.0" value="0.1" step="0.1">
+          <br>
+          <label for="delay-amount">Delay:</label>
+          <input type="range" id="delayTime" data-effect="" min="0" max="1" value="0" step="0.001">
+          <br>
+          <label for="velocity-amount">Velocity:</label>
+          <input type="range" id="velocity" data-effect="" min="0" max="1" value="0.4" step="0.01">
+          <br>
+          <label for="distortion-amount">Distortion:</label>
+          <input type="range" id="distortion" data-effect="" min="0" max="1" step="0.01" value="0"><br>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>Vibrato</h2>
+        </legend>
+        <p>
+          <label for="vibrato-depth">depth:</label>
+          <input type="range" id="vibratoDepth" data-effect="" min="0" max="1" value="0.0" step="0.001">
+          <br>
+          <label for="vibrato-frequency">frequency:</label>
+          <input type="range" id="vibratoFreq" data-effect="" min="0" max="2000" value="0.0" step="0.1">
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>Chorus</h2>
+        </legend>
+        <p>
+          <label for="chorus-depth">depth:</label>
+          <input type="range" id="chorusDepth" data-effect="" min="0" max="1" value="0.0" step="0.001">
+          <br>
+          <label for="chorus-frequency">frequency:</label>
+          <input type="range" id="chorusFreq" data-effect="" min="0" max="50" value="0.0" step="0.1">
+          <br>
+          <label for="chorus-delayTime">delay:</label>
+          <input type="range" id="chorusDelayTime" data-effect="" min="0" max="200" value="0.0" step="0.1">
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>Tremolo</h2>
+        </legend>
+        <p>
+          <label for="tremolo-frequency">frequency:</label>
+          <input type="range" id="tremoloFreq" data-effect="" min="0" max="50" value="0" step="1">
+          <br>
+          <label for="tremolo-depth">depth:</label>
+          <input type="range" id="tremoloDepth" data-effect="" min="0" max="1" value="0.0" step="0.001">
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>Lowpass</h2>
+        </legend>
+        <p>
+          <label for="lowpass">frequency:</label>
+          <input type="range" id="lowpass" data-effect="" min="0" max="5000" value="5000" step="1">
+          <label for="compressorRatio">compressor:</label>
+          <input type="range" id="compressorRatio" min="1" max="20" value="1" step="1">
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>Detune</h2>
+        </legend>
+        <p>
+          <label for="detune-amount">Use arrow keys <span class='highlight'>↓</span><span class='highlight'>↑</span> to
+            detune:</label>
+          <input type="range" id="detune-amount" name="detune" min="-100" max="100" value="0">
+        </p>
+        <!--<span class='highlight'>←</span><span class='highlight'>→</span>-->
+      </fieldset>
+
+    </navigator>
+    <div class='keyboard'>
+      <div class="keys-container">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
